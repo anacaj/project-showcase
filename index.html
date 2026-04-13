@@ -6,112 +6,224 @@
     <title>Ana Clara | UI/UX Architect</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
     
     <style>
-        :root { --accent: #d4cfc7; --bg: #0f0f0f; }
-        body { background-color: var(--bg); color: #f5f5f5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        :root { --accent: #d4cfc7; --bg: #0f0f0f; --text: #f5f5f5; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .serif { font-family: 'Instrument Serif', serif; }
-        
-        /* Bento Card Styling */
-        .bento-card { 
-            background: #000; 
-            border-radius: 40px; 
-            overflow: hidden; 
-            position: relative; 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            height: 600px; 
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        .mono { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; }
+
+        /* Bento Grid System */
+        .bento-card {
+            background: #000; border-radius: 40px; overflow: hidden;
+            position: relative; border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex; flex-direction: column; justify-content: flex-end;
         }
-        .bento-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.15); }
+        .bento-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.1); }
         
-        /* Image Handling */
-        .bento-img { 
-            position: absolute; 
-            inset: 0; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            opacity: 0.5; 
-            transition: 0.8s ease; 
+        /* Image Handling (MUDANÇA AQUI) */
+        .bento-img {
+            position: absolute; inset: 0; width: 100%; height: 100%; 
+            object-fit: contain; /* Faz a imagem inteira caber dentro do card */
+            padding: 3rem; /* Dá um respiro para a imagem não tocar as bordas */
+            opacity: 0.5; filter: grayscale(100%);
+            transition: all 0.9s ease; z-index: 0;
         }
-        .bento-card:hover .bento-img { opacity: 0.8; transform: scale(1.03); }
-        
-        /* Overlay & Text Protection */
-        .bento-overlay { 
-            position: absolute; 
-            inset: 0; 
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); 
-            padding: 3rem; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: flex-end; 
-            z-index: 10;
+        .bento-card:hover .bento-img { opacity: 0.8; filter: grayscale(0%); transform: scale(1.05); }
+
+        /* Estilo Específico para o Card do Skincare (para parecer mais mobile) */
+        .skincare-card {
+            background: radial-gradient(circle at center, #111 0%, #000 100%); /* Dá uma leve profundidade */
+        }
+        .skincare-img {
+            padding: 2rem 0; /* Menor padding para o mobile preencher melhor a altura */
+            max-width: 450px; /* Limita a largura para parecer um celular no desktop */
+            margin: 0 auto; /* Centraliza a imagem */
         }
 
-        /* Modal Styling */
-        .modal { 
-            display: none; 
-            position: fixed; 
-            inset: 0; 
-            z-index: 999; 
-            background: rgba(0,0,0,0.98); 
-            backdrop-filter: blur(20px); 
-            padding: 2rem; 
-            overflow-y: auto; 
+        .bento-overlay {
+            position: relative; z-index: 10;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            padding: 3rem; width: 100%;
         }
-        .modal.active { display: flex; align-items: center; justify-content: center; }
-        
+
+        /* Modals */
+        .modal {
+            display: none; position: fixed; inset: 0; 
+            z-index: 999; background: rgba(0,0,0,0.97); 
+            backdrop-filter: blur(20px); overflow-y: auto; padding: 2rem;
+        }
+        .modal.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
         .modal-content {
-            max-width: 800px;
-            width: 100%;
-            background: #0a0a0a;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 3.5rem;
-            border-radius: 48px;
+            max-width: 1100px; margin: 2rem auto; background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 48px; padding: 4rem;
         }
 
-        .mono { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+        .contact-link { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; transition: all 0.4s ease; display: flex; justify-content: space-between; align-items: center; }
+        .contact-link:hover { border-bottom: 1px solid var(--accent); color: var(--accent); padding-left: 15px; }
+        
+        .hero-bg { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <header class="py-32 px-6 md:px-20 border-b border-white/5">
-        <p class="mono opacity-40 mb-4">Portfolio // 2026</p>
-        <h1 class="text-7xl md:text-[9rem] serif italic text-white leading-[0.8] tracking-tighter">Digital Architect</h1>
-        <p class="text-zinc-500 text-xl mt-10 max-w-sm font-light">
-            Crafting <span class="text-white italic">high-end experiences</span> for global partnerships.
-        </p>
+    <header class="h-screen w-full flex flex-col md:flex-row overflow-hidden border-b border-white/5">
+        <div class="w-full md:w-5/12 h-[30vh] md:h-full hero-bg relative border-r border-white/5 flex items-center justify-center">
+            <div class="mono opacity-5 text-[14rem] select-none uppercase font-bold transform -rotate-90">STUDIO</div>
+            <div class="absolute top-10 left-10 mono opacity-30 uppercase tracking-[0.5em]">Ana_Clara // Studio_26</div>
+        </div>
+        <div class="w-full md:w-7/12 h-full p-12 md:p-24 flex flex-col justify-center">
+            <p class="mono opacity-40 mb-8 uppercase tracking-[0.4em]">UI/UX Designer & Developer</p>
+            <h1 class="text-7xl md:text-[9.5rem] serif italic leading-[0.8] mb-10 text-white tracking-tighter">Digital<br>Architect</h1>
+            <p class="text-zinc-500 text-xl font-light leading-relaxed max-w-sm">
+                Bridging the gap between <span class="text-white italic">high-end design</span> and functional, modern code.
+            </p>
+        </div>
     </header>
 
-    <section class="py-24 px-6 md:px-20 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
-        
-        <div class="md:col-span-12 bento-card bg-black h-[700px]">
-            <img src="skincare.png" class="bento-img" alt="Skincare App Mockup">
-            <div class="bento-overlay">
-                <p class="mono text-accent mb-4">Mobile Experience // JS ES6</p>
-                <h3 class="text-6xl serif italic text-white mb-8">Skincare Routine</h3>
-                <a href="skincare-routine.html" class="inline-block bg-white text-black px-10 py-5 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-zinc-200 transition">Launch App →</a>
+    <section id="projects" class="py-32 px-6 md:px-20 max-w-[1450px] mx-auto">
+        <div class="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div>
+                <p class="mono text-zinc-600 mb-4 uppercase tracking-[0.5em]">Curated_Selection.pkg</p>
+                <h2 class="text-7xl serif italic text-white">Featured Projects</h2>
             </div>
+            <p class="mono opacity-30 text-right uppercase leading-relaxed hidden md:block">Optimized for<br>Visual Excellence</p>
         </div>
 
-        <div class="md:col-span-6 bento-card">
-            <img src="xiaomi.png" class="bento-img" alt="Xiaomi UI Design">
-            <div class="bento-overlay">
-                <p class="mono text-accent mb-4">UI Case Study</p>
-                <h4 class="text-4xl serif italic text-white mb-6">Xiaomi Soundbar Pro</h4>
-                <button onclick="openModal('m-xiaomi')" class="text-zinc-400 underline mono text-[9px] hover:text-white transition">Read Narrative</button>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+            
+            <article class="md:col-span-12 h-[750px] bento-card skincare-card flex items-center justify-center">
+                <div class="w-full h-full relative overflow-hidden flex items-center justify-center p-8">
+                    <img src="skincare.png.png" class="skincare-img h-full w-auto object-contain opacity-70 transition-all duration-700 hover:scale-105 hover:opacity-100" alt="Skincare App Mobile Experience">
+                </div>
+                
+                <div class="bento-overlay">
+                    <div class="max-w-xl">
+                        <span class="mono text-accent text-[10px] mb-4 block uppercase tracking-widest">Interactive App // JS ES6 // Mobile First</span>
+                        <h3 class="text-6xl md:text-7xl serif italic text-white mb-6 leading-none">Skincare Routine App</h3>
+                        <div class="flex gap-4">
+                            <a href="skincare-routine.html" class="inline-block mono text-[10px] border border-accent/30 px-10 py-5 rounded-full bg-white text-black font-bold hover:bg-transparent hover:text-white transition">LAUNCH_LIVE_DEMO →</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="md:col-span-6 h-[600px] bento-card">
+                <img src="xiaomi.png.png" class="bento-img" alt="Xiaomi Soundbar UI">
+                <div class="bento-overlay">
+                    <span class="mono text-accent text-[10px] mb-2 block uppercase tracking-widest">Case Study // UI Design</span>
+                    <h4 class="text-4xl serif italic text-white mb-6">Xiaomi Soundbar Pro</h4>
+                    <button onclick="openModal('modal-xiaomi')" class="mono text-[9px] text-zinc-400 hover:text-white transition underline tracking-widest uppercase italic text-left">Read Case Study</button>
+                </div>
+            </article>
+
+            <article class="md:col-span-6 h-[600px] bento-card">
+                <img src="mario-wonder.png.png" class="bento-img" alt="Nintendo UI Design">
+                <div class="bento-overlay">
+                    <span class="mono text-accent text-[10px] mb-2 block uppercase tracking-widest">Visual Storytelling // UI</span>
+                    <h4 class="text-4xl serif italic text-white mb-6">Super Mario Wonder</h4>
+                    <button onclick="openModal('modal-mario')" class="mono text-[9px] text-zinc-400 hover:text-white transition underline tracking-widest uppercase italic text-left">Read Case Study</button>
+                </div>
+            </article>
+
+            <article class="md:col-span-12 h-[600px] bento-card">
+                <img src="luigis-mansion.png.png" class="bento-img" alt="Luigi's Mansion UI">
+                <div class="bento-overlay">
+                    <span class="mono text-accent text-[10px] mb-2 block uppercase tracking-widest">Atmospheric UI // Case Study</span>
+                    <h4 class="text-4xl md:text-6xl serif italic text-white mb-6">Luigi's Mansion 3</h4>
+                    <button onclick="openModal('modal-luigi')" class="mono text-[9px] text-zinc-400 hover:text-white transition underline tracking-widest uppercase italic text-left">Read Case Study</button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <div id="modal-xiaomi" class="modal">
+        <div class="modal-content">
+            <button onclick="closeModal('modal-xiaomi')" class="mono text-accent mb-12 hover:tracking-widest transition-all">← CLOSE_CASE_STUDY</button>
+            <h2 class="text-7xl serif italic text-white mb-10">Xiaomi Soundbar Pro</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <div class="mb-10">
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Challenge</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-xl italic serif">"How to present technical complexity through a premium lens?"</p>
+                        <p class="text-zinc-500 font-light mt-4">Organizing dense technical specifications into a layout that feels airy and high-end for global tech consumers.</p>
+                    </div>
+                    <div>
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Solution</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-lg">A modular grid system paired with custom minimalist iconography and aggressive white space to elevate the product's premium aesthetic.</p>
+                    </div>
+                </div>
+                <img src="xiaomi.png.png" class="rounded-[32px] border border-white/5 shadow-2xl" alt="Xiaomi Detail View">
             </div>
         </div>
+    </div>
 
-        <div class="md:col-span-6 bento-card">
-            <img src="mario.png" class="bento-img" alt="Mario Wonder UI">
-            <div class="bento-overlay">
-                <p class="mono text-accent mb-4">Visual Storytelling</p>
-                <h4 class="text-4xl serif italic text-white mb-6">Super Mario Wonder</h4>
-                <button onclick="openModal('m-mario')" class="text-zinc-400 underline mono text-[9px] hover:text-white transition">Read Narrative</button>
+    <div id="modal-mario" class="modal">
+        <div class="modal-content">
+            <button onclick="closeModal('modal-mario')" class="mono text-accent mb-12 hover:tracking-widest transition-all">← CLOSE_CASE_STUDY</button>
+            <h2 class="text-7xl serif italic text-white mb-12">Super Mario Wonder</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <div class="mb-10">
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Challenge</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-xl italic serif">"Capturing magic without sacrificing structure."</p>
+                        <p class="text-zinc-500 font-light mt-4">Creating a professional UI that conveys Nintendo's vibrant energy without being cluttered or distracting.</p>
+                    </div>
+                    <div>
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Solution</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-lg">Bold color-blocking and high-contrast accessibility zones to guide the narrative flow and keep the information architecture clear.</p>
+                    </div>
+                </div>
+                <img src="mario-wonder.png.png" class="rounded-[32px] border border-white/5 shadow-2xl" alt="Mario Detail View">
             </div>
         </div>
+    </div>
 
-        <div class="md:col-span-12 bento-card h-[550px]">
-            <img src="luigi.png" class="bento-img" alt="Luigi's Mansion UI">
+    <div id="modal-luigi" class="modal">
+        <div class="modal-content">
+            <button onclick="closeModal('modal-luigi')" class="mono text-accent mb-12 hover:tracking-widest transition-all">← CLOSE_CASE_STUDY</button>
+            <h2 class="text-7xl serif italic text-white mb-12">Luigi's Mansion 3</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <div class="mb-10">
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Challenge</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-xl italic serif">"Building atmosphere through dark UI patterns."</p>
+                        <p class="text-zinc-500 font-light mt-4">Designing an interface that feels spooky and immersive while maintaining perfect usability in low-light environments.</p>
+                    </div>
+                    <div>
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Solution</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-lg">Deep shadows, neon-ghostly accents (Glow UI), and a dark-mode architecture that reflects the game's haunted aesthetic while highlighting interactive elements.</p>
+                    </div>
+                </div>
+                <img src="luigis-mansion.png.png" class="rounded-[32px] border border-white/5 shadow-2xl" alt="Luigi Detail View">
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-40 px-6 md:px-20 border-t border-white/5 bg-[#0a0a0a] text-center md:text-left">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
+            <h2 class="text-6xl md:text-8xl serif italic text-white leading-[0.9] tracking-tighter">Let's build<br>the future.</h2>
+            <div class="flex flex-col gap-6 w-full md:w-80">
+                <a href="mailto:anaclara.a.j97@gmail.com" class="border-b border-white/10 py-4 flex justify-between mono hover:text-accent hover:pl-4 transition-all">Email Address <span>→</span></a>
+                <a href="https://linkedin.com/in/anacaj/" class="border-b border-white/10 py-4 flex justify-between mono hover:text-accent hover:pl-4 transition-all">LinkedIn profile <span>→</span></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = 'auto'; }
+        // Fechar com ESC key
+        window.addEventListener('keydown', (e) => { if(e.key === 'Escape') { 
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+            document.body.style.overflow = 'auto';
+        }});
+    </script>
+
+</body>
+</html>
