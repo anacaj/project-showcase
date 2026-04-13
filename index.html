@@ -4,108 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana Clara | UI/UX Architect</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root { --accent: #d4cfc7; --bg: #0f0f0f; }
-        body { background-color: var(--bg); color: #f5f5f5; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: #f5f5f5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .serif { font-family: 'Instrument Serif', serif; }
-        .mono { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; }
-        .bento-card { background: #000; border-radius: 40px; overflow: hidden; position: relative; border: 1px solid rgba(255, 255, 255, 0.03); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; justify-content: flex-end; height: 600px; }
-        .bento-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.1); }
-        .bento-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; filter: grayscale(100%); transition: all 0.9s ease; }
-        .bento-card:hover .bento-img { opacity: 0.7; filter: grayscale(0%); transform: scale(1.05); }
-        .bento-overlay { position: relative; z-index: 10; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%); padding: 3rem; width: 100%; }
-        .modal { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); overflow-y: auto; padding: 2rem; }
-        .modal.active { display: block; }
-        .contact-link { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; display: flex; justify-content: space-between; transition: 0.4s; }
-        .contact-link:hover { color: var(--accent); padding-left: 10px; }
+        
+        /* Bento Card Styling */
+        .bento-card { 
+            background: #000; 
+            border-radius: 40px; 
+            overflow: hidden; 
+            position: relative; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            height: 600px; 
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.15); }
+        
+        /* Image Handling */
+        .bento-img { 
+            position: absolute; 
+            inset: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            opacity: 0.5; 
+            transition: 0.8s ease; 
+        }
+        .bento-card:hover .bento-img { opacity: 0.8; transform: scale(1.03); }
+        
+        /* Overlay & Text Protection */
+        .bento-overlay { 
+            position: absolute; 
+            inset: 0; 
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); 
+            padding: 3rem; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            z-index: 10;
+        }
+
+        /* Modal Styling */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 999; 
+            background: rgba(0,0,0,0.98); 
+            backdrop-filter: blur(20px); 
+            padding: 2rem; 
+            overflow-y: auto; 
+        }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        
+        .modal-content {
+            max-width: 800px;
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 3.5rem;
+            border-radius: 48px;
+        }
+
+        .mono { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <header class="h-[70vh] flex flex-col justify-center px-6 md:px-20 border-b border-white/5">
-        <p class="mono opacity-40 mb-4 uppercase tracking-[0.4em]">Ana_Clara // Portfolio.v2</p>
-        <h1 class="text-7xl md:text-[8rem] serif italic leading-[0.8] text-white">Digital Architect</h1>
-        <p class="text-zinc-500 text-xl mt-8 max-w-sm font-light">Crafting <span class="text-white italic">high-end experiences</span> for global brands.</p>
+    <header class="py-32 px-6 md:px-20 border-b border-white/5">
+        <p class="mono opacity-40 mb-4">Portfolio // 2026</p>
+        <h1 class="text-7xl md:text-[9rem] serif italic text-white leading-[0.8] tracking-tighter">Digital Architect</h1>
+        <p class="text-zinc-500 text-xl mt-10 max-w-sm font-light">
+            Crafting <span class="text-white italic">high-end experiences</span> for global partnerships.
+        </p>
     </header>
 
-    <section class="py-20 px-6 md:px-20 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+    <section class="py-24 px-6 md:px-20 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
         
         <div class="md:col-span-12 bento-card bg-black h-[700px]">
-            <img src="./skincare-mockup.png.png" class="bento-img" alt="Skincare">
+            <img src="skincare.png" class="bento-img" alt="Skincare App Mockup">
             <div class="bento-overlay">
-                <span class="mono text-accent mb-2 block">APP DEVELOPMENT</span>
-                <h3 class="text-5xl serif italic text-white mb-6">Skincare Routine</h3>
-                <a href="skincare-routine.html" class="inline-block bg-white text-black px-8 py-4 rounded-full mono text-[10px] font-bold uppercase">View Live App</a>
+                <p class="mono text-accent mb-4">Mobile Experience // JS ES6</p>
+                <h3 class="text-6xl serif italic text-white mb-8">Skincare Routine</h3>
+                <a href="skincare-routine.html" class="inline-block bg-white text-black px-10 py-5 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-zinc-200 transition">Launch App →</a>
             </div>
         </div>
 
         <div class="md:col-span-6 bento-card">
-            <img src="./xiaomi.png.png" class="bento-img" alt="Xiaomi">
+            <img src="xiaomi.png" class="bento-img" alt="Xiaomi UI Design">
             <div class="bento-overlay">
-                <span class="mono text-accent mb-2 block">UI CASE STUDY</span>
-                <h4 class="text-3xl serif italic text-white mb-4">Xiaomi Soundbar Pro</h4>
-                <button onclick="openModal('m-xiaomi')" class="mono text-zinc-400 underline uppercase text-[9px]">Read Details</button>
+                <p class="mono text-accent mb-4">UI Case Study</p>
+                <h4 class="text-4xl serif italic text-white mb-6">Xiaomi Soundbar Pro</h4>
+                <button onclick="openModal('m-xiaomi')" class="text-zinc-400 underline mono text-[9px] hover:text-white transition">Read Narrative</button>
             </div>
         </div>
 
         <div class="md:col-span-6 bento-card">
-            <img src="./mario-wonder.png.png" class="bento-img" alt="Mario">
+            <img src="mario.png" class="bento-img" alt="Mario Wonder UI">
             <div class="bento-overlay">
-                <span class="mono text-accent mb-2 block">VISUAL DESIGN</span>
-                <h4 class="text-3xl serif italic text-white mb-4">Super Mario Wonder</h4>
-                <button onclick="openModal('m-mario')" class="mono text-zinc-400 underline uppercase text-[9px]">Read Details</button>
+                <p class="mono text-accent mb-4">Visual Storytelling</p>
+                <h4 class="text-4xl serif italic text-white mb-6">Super Mario Wonder</h4>
+                <button onclick="openModal('m-mario')" class="text-zinc-400 underline mono text-[9px] hover:text-white transition">Read Narrative</button>
             </div>
         </div>
 
-        <div class="md:col-span-12 bento-card h-[500px]">
-            <img src="./luigis-mansion.png.png" class="bento-img" alt="Luigi">
-            <div class="bento-overlay">
-                <span class="mono text-accent mb-2 block">ATMOSPHERIC UI</span>
-                <h4 class="text-4xl serif italic text-white mb-4">Luigi's Mansion 3</h4>
-                <button onclick="openModal('m-luigi')" class="mono text-zinc-400 underline uppercase text-[9px]">Read Details</button>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-32 px-6 md:px-20 border-t border-white/5 bg-black">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <h2 class="text-5xl serif italic">Let's connect.</h2>
-            <div class="w-full md:w-80">
-                <a href="mailto:anaclara.a.j97@gmail.com" class="contact-link mono">EMAIL <span>→</span></a>
-                <a href="https://linkedin.com/in/anacaj/" class="contact-link mono">LINKEDIN <span>→</span></a>
-            </div>
-        </div>
-    </footer>
-
-    <div id="m-xiaomi" class="modal" onclick="closeModal('m-xiaomi')">
-        <div class="max-w-3xl mx-auto mt-20 bg-zinc-900 p-10 rounded-3xl" onclick="event.stopPropagation()">
-            <h2 class="text-4xl serif italic mb-6">Xiaomi Case Study</h2>
-            <p class="text-zinc-400 leading-relaxed mb-8">Focusing on a premium UI for the Soundbar Pro, using high-contrast typography and minimalist layout to reflect technology and luxury.</p>
-            <button onclick="closeModal('m-xiaomi')" class="mono text-accent">CLOSE [X]</button>
-        </div>
-    </div>
-
-    <div id="m-mario" class="modal" onclick="closeModal('m-mario')">
-        <div class="max-w-3xl mx-auto mt-20 bg-zinc-900 p-10 rounded-3xl" onclick="event.stopPropagation()">
-            <h2 class="text-4xl serif italic mb-6">Mario Wonder UI</h2>
-            <p class="text-zinc-400 leading-relaxed mb-8">Capturing the vibrant essence of Nintendo through bold color-blocking and accessible interface design.</p>
-            <button onclick="closeModal('m-mario')" class="mono text-accent">CLOSE [X]</button>
-        </div>
-    </div>
-
-    <div id="m-luigi" class="modal" onclick="closeModal('m-luigi')">
-        <div class="max-w-3xl mx-auto mt-20 bg-zinc-900 p-10 rounded-3xl" onclick="event.stopPropagation()">
-            <h2 class="text-4xl serif italic mb-6">Luigi's Mansion UI</h2>
-            <p class="text-zinc-400 leading-relaxed mb-8">Exploring dark-mode patterns and atmospheric lighting effects within a user interface.</p>
-            <button onclick="closeModal('m-luigi')" class="mono text-accent">CLOSE [X]</button>
-        </div>
-    </div>
-
-    <script>
-        function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = 'auto'; }
-    </script>
-</body>
-</html>
+        <div class="md:col-span-12 bento-card h-[550px]">
+            <img src="luigi.png" class="bento-img" alt="Luigi's Mansion UI">
