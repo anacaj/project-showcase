@@ -60,7 +60,7 @@
 
     <header class="h-screen w-full flex flex-col md:flex-row overflow-hidden border-b border-white/5">
         <div class="w-full md:w-5/12 h-[30vh] md:h-full hero-bg relative border-r border-white/5 flex items-center justify-center">
-            <div class="mono opacity-5 text-[14rem] select-none uppercase font-bold transform -rotate-90">DESIGN</div>
+            <div class="mono opacity-5 text-[14rem] select-none uppercase font-bold transform -rotate-90">STUDIO</div>
             <div class="absolute top-10 left-10 mono opacity-30 uppercase tracking-[0.5em]">Ana_Clara // Studio_26</div>
         </div>
         <div class="w-full md:w-7/12 h-full p-12 md:p-24 flex flex-col justify-center">
@@ -69,9 +69,6 @@
             <p class="text-zinc-500 text-xl font-light leading-relaxed max-w-sm">
                 Crafting <span class="text-white italic">high-end experiences</span> through clean design and modern code.
             </p>
-            <div class="mt-20 flex gap-12 border-t border-white/10 pt-10">
-                <p class="text-[10px] mono opacity-40 uppercase tracking-widest">Available for Remote Partnerships</p>
-            </div>
         </div>
     </header>
 
@@ -88,7 +85,7 @@
             
             <article class="md:col-span-12 h-[750px] bento-card bg-[#050505]">
                 <div class="absolute inset-0 flex items-center justify-center p-12 pointer-events-none">
-                    <img src="skincare-mockup.png" class="h-full w-auto object-contain opacity-40 transition-all duration-1000 group-hover:scale-110" alt="Skincare App">
+                    <img src="skincare-mockup.png" class="h-full w-auto object-contain opacity-40 transition-all duration-1000" alt="Skincare App">
                 </div>
                 <div class="bento-overlay">
                     <div class="max-w-xl">
@@ -117,58 +114,84 @@
                 </div>
             </article>
 
+            <article class="md:col-span-12 h-[600px] bento-card">
+                <img src="luigis-mansion.png" class="bento-img" alt="Luigi's Mansion UI">
+                <div class="bento-overlay">
+                    <span class="mono text-accent text-[10px] mb-2 block uppercase tracking-widest">Atmospheric UI // Case Study</span>
+                    <h4 class="text-4xl md:text-6xl serif italic text-white mb-6">Luigi's Mansion 3</h4>
+                    <button onclick="openModal('modal-luigi')" class="mono text-[9px] text-zinc-400 hover:text-white transition underline tracking-widest uppercase italic">Read Case Study</button>
+                </div>
+            </article>
+
         </div>
     </section>
 
     <div id="modal-xiaomi" class="modal">
         <div class="modal-content">
-            <button onclick="closeModal('modal-xiaomi')" class="mono text-accent mb-12 hover:tracking-[0.3em] transition-all">← CLOSE_CASE_STUDY</button>
+            <button onclick="closeModal('modal-xiaomi')" class="mono text-accent mb-12">← CLOSE_CASE_STUDY</button>
             <h2 class="text-7xl serif italic text-white mb-12">Xiaomi Soundbar Pro</h2>
-            <div class="grid md:grid-cols-2 gap-16 items-start">
+            <div class="grid md:grid-cols-2 gap-16">
                 <div class="space-y-12">
                     <div>
                         <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Challenge</p>
                         <p class="text-zinc-400 font-light leading-relaxed text-xl italic serif">"How to present technical complexity through a premium lens?"</p>
-                        <p class="text-zinc-500 font-light leading-relaxed mt-4">The goal was to organize dense technical specifications (Dolby, NFC, connectivity) into a layout that feels airy and high-end.</p>
+                        <p class="text-zinc-500 font-light mt-4">Organizing dense technical specifications into a layout that feels airy and high-end.</p>
                     </div>
                     <div>
                         <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Solution</p>
-                        <p class="text-zinc-400 font-light leading-relaxed text-lg">A modular grid system paired with custom minimalist iconography. By utilizing aggressive white space and sharp typography, we elevated the product's metallic finish and ensured seamless mobile scannability.</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-lg">A modular grid system paired with custom minimalist iconography and aggressive white space.</p>
                     </div>
                 </div>
-                <img src="xiaomi.png" class="rounded-[32px] border border-white/5 shadow-2xl" alt="Xiaomi Project Preview">
+                <img src="xiaomi.png" class="rounded-[32px] border border-white/5" alt="Xiaomi Preview">
             </div>
         </div>
     </div>
 
     <div id="modal-mario" class="modal">
         <div class="modal-content">
-            <button onclick="closeModal('modal-mario')" class="mono text-accent mb-12 hover:tracking-[0.3em] transition-all">← CLOSE_CASE_STUDY</button>
+            <button onclick="closeModal('modal-mario')" class="mono text-accent mb-12">← CLOSE_CASE_STUDY</button>
             <h2 class="text-7xl serif italic text-white mb-12">Super Mario Wonder</h2>
-            <div class="grid md:grid-cols-2 gap-16 items-start">
+            <div class="grid md:grid-cols-2 gap-16">
                 <div class="space-y-12">
                     <div>
                         <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Challenge</p>
                         <p class="text-zinc-400 font-light leading-relaxed text-xl italic serif">"Capturing magic without sacrificing structure."</p>
-                        <p class="text-zinc-500 font-light leading-relaxed mt-4">The brand's vibrant energy needed to be contained within a professional UI that didn't feel cluttered or overwhelming for the user.</p>
+                        <p class="text-zinc-500 font-light mt-4">Creating a professional UI that conveys Nintendo's vibrant energy without being cluttered.</p>
                     </div>
                     <div>
                         <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Solution</p>
-                        <p class="text-zinc-400 font-light leading-relaxed text-lg">Bold color-blocking and floating visual elements. The UI segments plot, mechanics, and characters into distinct "wonder" zones, using high-contrast accessibility to guide the narrative flow.</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-lg">Bold color-blocking and high-contrast accessibility to guide the narrative flow.</p>
                     </div>
                 </div>
-                <img src="mario-wonder.png" class="rounded-[32px] border border-white/5 shadow-2xl" alt="Mario Project Preview">
+                <img src="mario-wonder.png" class="rounded-[32px] border border-white/5" alt="Mario Preview">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-luigi" class="modal">
+        <div class="modal-content">
+            <button onclick="closeModal('modal-luigi')" class="mono text-accent mb-12">← CLOSE_CASE_STUDY</button>
+            <h2 class="text-7xl serif italic text-white mb-12">Luigi's Mansion 3</h2>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="space-y-12">
+                    <div>
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Challenge</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-xl italic serif">"Building atmosphere through dark UI patterns."</p>
+                        <p class="text-zinc-500 font-light mt-4">How to design an interface that feels spooky and immersive while maintaining perfect usability.</p>
+                    </div>
+                    <div>
+                        <p class="mono text-accent text-[10px] uppercase mb-4 tracking-widest opacity-40">The Solution</p>
+                        <p class="text-zinc-400 font-light leading-relaxed text-lg">Utilizing deep shadows, neon-ghostly accents (Glow UI), and a dark-mode first architecture to reflect the game's haunted hotel aesthetic.</p>
+                    </div>
+                </div>
+                <img src="luigis-mansion.png" class="rounded-[32px] border border-white/5 shadow-2xl" alt="Luigi Preview">
             </div>
         </div>
     </div>
 
     <footer class="py-48 px-6 md:px-20 bg-[#080808] border-t border-white/5">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-24 items-center justify-between">
-            <div class="max-w-md text-center md:text-left">
-                <h2 class="text-7xl serif italic text-white mb-8 leading-[0.9]">Let's build<br>the future.</h2>
-                <p class="text-zinc-600 mono text-[9px] uppercase tracking-[0.4em]">Optimized for Global Partnerships</p>
-            </div>
-            
+            <h2 class="text-7xl serif italic text-white leading-[0.9]">Let's build<br>the future.</h2>
             <div class="w-full md:w-96 space-y-4">
                 <a href="mailto:anaclara.a.j97@gmail.com" class="contact-link uppercase text-[11px] mono font-bold">Email Address <span class="opacity-30">→</span></a>
                 <a href="https://linkedin.com/in/anacaj/" class="contact-link uppercase text-[11px] mono font-bold">LinkedIn <span class="opacity-30">→</span></a>
@@ -180,9 +203,7 @@
     <script>
         function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = 'auto'; }
-        
-        // Close modal on ESC key
-        window.onkeydown = function(event) { if (event.keyCode == 27) { closeModal('modal-xiaomi'); closeModal('modal-mario'); } };
+        window.onkeydown = function(e) { if (e.keyCode == 27) { closeModal('modal-xiaomi'); closeModal('modal-mario'); closeModal('modal-luigi'); } };
     </script>
 
 </body>
